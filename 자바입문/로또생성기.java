@@ -44,10 +44,10 @@ class 로또생성기 {
         String title = " ### 로또 ### \n";
         
 
-        buyLotto();
+        int[] myLotto = buyLotto();
 
-        String reusult ="";
-        System.out.println("=== 로또구매 ===");
+       
+        System.out.println("=== 로또 추첨 ===");
         
         int[] arr = new int[6];
         Random random = new Random();
@@ -63,8 +63,10 @@ class 로또생성기 {
             }
         }
         arr = sort(arr);
+        int count = check(myLotto, arr);
         String answer = printArray(arr);
-        return title + answer;
+        
+        return title + answer + rank(count);
     }
     /**
      * 배열 출력 메소드
@@ -79,7 +81,7 @@ class 로또생성기 {
         +"로또 번호\n"
         +"******************************************\n"
         +"%s"
-        +"\n******************************************", result);
+        +"\n******************************************\n", result);
         return answer;
     }
     /** 
@@ -121,10 +123,56 @@ class 로또생성기 {
             int input = scanner.nextInt();
             System.out.println(String.format("당신이 입력한 번호는 %d입니다.", input));
             myLotto[i] = input;
+            
         }
         String answer = printArray(myLotto);
         System.out.println(answer);
-        return null;
+        return myLotto;
+    }
+    public int check(int arr[], int com[]){
+        int count = 0;
+        for(int i = 0; i < arr.length; i++){
+            for(int j = 0; j < com.length; j++ ){
+                if(arr[i]==com[j]){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     *  로또 등수 정하기
+     *  1등 : 6개 다 맞춤
+     *  2등 : 5개 맞춤
+     *  3등 : 4개 맞춤
+     *  4등 : 3개 맞춤
+     *  이하는 꽝
+     */
+    public String rank(int count){
+        String message = "";
+        switch(count){
+            case 3:
+            message = "4등";
+            break;
+            case 4:
+            message = "3등";
+            break;
+            case 5:
+            message = "2등.";
+            break;
+            case 6:
+            message = "1등";
+            break;
+            default:
+            message = "꽝";
+            break;
+
+        }
+        message = () ?:;
+        return message;
+
+
     }
     
 }
