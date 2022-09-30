@@ -169,8 +169,8 @@ class 로또생성기 {
             break;
 
         }
-        message = () ?:;
-        return message;
+        String prefix = (!message.equals("꽝")) ? "축하합니다!!" : "아쉽네요. 다음기회에...";
+        return prefix + message;
 
 
     }
