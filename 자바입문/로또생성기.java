@@ -42,12 +42,13 @@ class 로또생성기 {
     }
     public String solution(){
         String title = " ### 로또 ### \n";
-        System.out.println("=== 로또 구매 ===");
+        
 
-        int input = inputNum();
+        buyLotto();
 
         String reusult ="";
         System.out.println("=== 로또구매 ===");
+        
         int[] arr = new int[6];
         Random random = new Random();
         for(int i =0; i< 6; i++ ){
@@ -111,13 +112,19 @@ class 로또생성기 {
     /**
      * 숫자 추출
      */
-    public int inputNum(){
-        System.out.println("원하는 숫자를 입력하시오. 단, 범위는 1부터 8까지 입니다.");
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        System.out.println(String.format("당신이 입력한 번호는 %d입니다.", input));
-        
-        return input;
+    public int[] buyLotto(){
+        System.out.println("=== 로또 구매 ===");
+        int[] myLotto =new int[6];
+        for(int i =0; i < 6; i++){
+            System.out.println("원하는 숫자를 입력하시오. 단, 범위는 1부터 8까지 입니다.");
+            Scanner scanner = new Scanner(System.in);
+            int input = scanner.nextInt();
+            System.out.println(String.format("당신이 입력한 번호는 %d입니다.", input));
+            myLotto[i] = input;
+        }
+        String answer = printArray(myLotto);
+        System.out.println(answer);
+        return null;
     }
     
 }
